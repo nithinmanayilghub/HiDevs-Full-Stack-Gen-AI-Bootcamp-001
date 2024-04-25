@@ -34,12 +34,14 @@ class AddressBook:
         country = self.get_input("Enter Country: ",r'^[a-zA-Z\s]+$',"Country")
         mobile = self.get_input("Enter Mobile: ",self.mobile_pattern,"Mobile Number")
 
+        # Duplicate Check for mobile numbers
         while mobile in [entry[6][0] for entries in self.address_book.values() for entry in entries]:
           print("Mobile Number Already Exists. Please try again.")
           mobile = self.get_input("Enter mobile number: ",self.mobile_pattern,"Phone Number")
 
         email = self.get_input("Enter Email: ",self.email_pattern,"Email ID")
 
+        # Duplicate Check for Email IDs
         while email in[entry[6][1] for entries in self.address_book.values() for entry in entries]:
           print("Email ID Already Exists.Please try again.")
           email = self.get_input("Enter Email: ",self.email_pattern,"Email ID")
