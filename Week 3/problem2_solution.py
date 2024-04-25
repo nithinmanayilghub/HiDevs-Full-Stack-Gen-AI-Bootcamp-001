@@ -1,13 +1,16 @@
+# import Libraries
 import pickle
 from collections import defaultdict, Counter
 import re
+
 
 class AddressBook:
     def __init__(self):
         self.address_book = defaultdict(list)
         self.email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         self.mobile_pattern = r'^\d{10}$'
-    
+
+    # Function to validate the input 
     def get_input(self,prompt,pattern,field_name):
       while True:
         user_input = input(prompt)
@@ -21,6 +24,7 @@ class AddressBook:
           print(f"Invalid {field_name}. Please Enter a valid {field_name}.")
           return False
 
+    # Add Entries to the AddressBook
     def add_entry(self):
         first_name = self.get_input("Enter first name: ",r'^[a-zA-Z\s]+$',"First Name")
         last_name = self.get_input("Enter Last name: ",r'^[a-zA-Z\s]+$',"Last Name")
@@ -42,7 +46,8 @@ class AddressBook:
         
         entries = [first_name.title(),last_name.title(),street_address.title(),city.title(),state.title(),country.title(),(mobile,email)]
         self.address_book[(mobile,email)].append(entries)
-
+    
+    # Function to count the occurences of first name,last name, street name
     def count_occurrences(self):
         first_names = Counter(entry[0] for entries in self.address_book.values() for entry in entries)
         last_names = Counter(entry[1].lower() for entries in self.address_book.values() for entry in entries)
@@ -59,7 +64,7 @@ class AddressBook:
         print("\nStreet Occurrences:")
         for street, count in streets.most_common():
             print(f"{street}: {count}")
-
+    # Function to save data in pickle file format
     def save_to_disk(self, filename):
         try:
             with open(filename, 'wb') as file:
@@ -67,6 +72,7 @@ class AddressBook:
         except Exception as e:
             print(f"Error saving to disk: {e}")
 
+    # Function to Load data from pickle file
     def load_from_disk(self, filename):
         try:
             with open(filename, 'rb') as file:
@@ -75,7 +81,8 @@ class AddressBook:
             print(f"File '{filename}' not found. Starting with an empty address book.")
         except Exception as e:
             print(f"Error loading from disk: {e}")
-
+            
+# Example Implementation
 def main():
     address_book = AddressBook()
     address_book.load_from_disk('problem2_data_file.pickle')
