@@ -18,8 +18,6 @@ Correlation analysis revealed strong correlations among certain features, such a
 We explored Support Vector Machines (SVMs) for classification, achieving a weighted average of 83.3% on the original dataset and 81.8% on the PCA-transformed data.
 #### Random Forest Classifier
 The Random Forest Classifier demonstrated excellent performance and provided valuable insights into feature importance. By fine-tuning our feature selection process based on highly correlated variables, we achieved an impressive  weighted average of 96%.
-#### XGBoost Classifier
-We leveraged the Extreme Gradient Boosting (XGBoost) algorithm and conducted hyperparameter tuning using GridSearchCV. The tuned XGBoost classifier achieved remarkable results, with a weighted average of around 96.5% on the test set.
 #### Model Comparison and Selection
 After evaluating multiple models using classification reports (precision, recall, and F1-score), the Random Forest Classifier emerged as the best-performing model, exhibiting high scores across all metrics.
 Conclusion
