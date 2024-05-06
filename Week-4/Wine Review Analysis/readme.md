@@ -28,9 +28,9 @@ These findings contribute to our understanding of the factors influencing wine q
 Usage
 To run this project, follow these steps:
 
-Clone the repository: 
+## Clone the repository: 
 ```git clone https://github.com/your-repo/wine-review-analysis.git```
 Install the required dependencies: 
 ```pip install -r requirements.txt```
-Contributing
+## Contributing
 Contributions are welcome! If you have any suggestions, improvements, or bug fixes, please open an issue or submit a pull request.
