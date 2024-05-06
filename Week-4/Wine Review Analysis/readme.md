@@ -21,7 +21,7 @@ The Random Forest Classifier demonstrated excellent performance and provided val
 #### Model Comparison and Selection
 After evaluating multiple models using classification reports (precision, recall, and F1-score), the Random Forest Classifier emerged as the best-performing model, exhibiting high scores across all metrics.
 Conclusion
-This project successfully developed highly accurate predictive models for wine quality prediction based on chemical properties. The Random Forest Classifier stood out as the top-performing model, achieving an impressive accuracy of 96%.
+This project successfully developed highly accurate predictive models for wine quality prediction based on chemical properties. The Random Forest Classifier stood out as the top-performing model, achieving an impressive weighted average of 96%.
 These findings contribute to our understanding of the factors influencing wine quality and pave the way for practical applications in the wine industry, benefiting producers and connoisseurs alike.
 Usage
 To run this project, follow these steps:
