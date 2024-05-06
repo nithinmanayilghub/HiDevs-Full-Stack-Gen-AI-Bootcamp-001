@@ -8,7 +8,7 @@ This project aims to predict wine quality based on various chemical properties u
 ### Handling Imbalanced Data
 The dataset exhibited imbalanced class distributions for wine quality ratings. We addressed this issue by employing upsampling techniques, specifically random oversampling, to balance the classes.
 ### Outlier Detection and Treatment
-We devoted significant effort to identifying and handling outliers in the dataset. Techniques such as visualizations (boxplots, histograms), interquartile range calculations, Z-score transformations, and winsorization were employed to detect and mitigate the influence of extreme values.
+We devoted significant effort to identifying and handling outliers in the dataset. Techniques such as visualizations (boxplots, histograms), interquartile range calculations, Z-score transformationswere employed to detect and mitigate the influence of extreme values.
 ### Feature Scaling and Dimensionality Reduction
 Standard scaling was applied to normalize the data, and Principal Component Analysis (PCA) was conducted to reduce the dimensionality while retaining essential information. We determined that eight principal components could capture over 95% of the variation in the original data.
 ### Correlation Analysis and Feature Selection
