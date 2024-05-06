@@ -1,5 +1,6 @@
 # Housing Price Prediction Using Machine Learning Models
 
+## Introduction
 The ability to accurately predict housing prices is valuable for real estate professionals, investors, and home buyers alike. 
 In this project, we'll walk through a housing price prediction project using the California housing dataset and various machine learning models. We'll focus on the machine learning model and demonstrate how to tune its hyperparameters to improve performance.
 We started by importing the necessary libraries and loading the California housing dataset into a pandas DataFrame. After exploring the data and handling outliers, we split it into training and testing sets.
