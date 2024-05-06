@@ -1,7 +1,7 @@
-# Housing Price Prediction with XGBoost and Hyperparameter Tuning
+# Housing Price Prediction Using Machine Learning Models
 
 The ability to accurately predict housing prices is valuable for real estate professionals, investors, and home buyers alike. 
-In this project, we'll walk through a housing price prediction project using the California housing dataset and various machine learning models. We'll focus on the XGBoost regressor model and demonstrate how to tune its hyperparameters to improve performance.
+In this project, we'll walk through a housing price prediction project using the California housing dataset and various machine learning models. We'll focus on the machine learning model and demonstrate how to tune its hyperparameters to improve performance.
 We started by importing the necessary libraries and loading the California housing dataset into a pandas DataFrame. After exploring the data and handling outliers, we split it into training and testing sets.
 To evaluate models, we created a pipeline that included a StandardScaler and various regression algorithms like linear regression, random forest, gradient boosting, and more. We used 5-fold cross-validation to compare the models' performance on the training set.
 The XGBoost regressor achieved the highest cross-validation R-squared score of around 0.83, outperforming other models like random forest and gradient boosting. However, its performance could be improved further through hyperparameter tuning.
