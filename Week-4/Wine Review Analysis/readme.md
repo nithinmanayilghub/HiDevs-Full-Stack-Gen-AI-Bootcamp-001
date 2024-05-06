@@ -5,11 +5,12 @@ In this project, we'll walk through a housing price prediction project using the
 We started by importing the necessary libraries and loading the California housing dataset into a pandas DataFrame. After exploring the data and handling outliers, we split it into training and testing sets.
 To evaluate models, we created a pipeline that included a StandardScaler and various regression algorithms like linear regression, random forest, gradient boosting, and more. We used 5-fold cross-validation to compare the models' performance on the training set.
 The XGBoost regressor achieved the highest cross-validation R-squared score of around 0.83, outperforming other models like random forest and gradient boosting. However, its performance could be improved further through hyperparameter tuning.
-We used GridSearchCV to tune the learning rate, max depth, and number of estimators for the XGBoost model. The best hyperparameters found were:
+We used GridSearchCV to tune the learning rate, max depth, and number of estimators for the XGBoost model. 
+The best hyperparameters found were:
 
-learning_rate = 0.1
-max_depth = 4
-n_estimators = 1500
+- learning_rate = 0.1
+- max_depth = 4
+- n_estimators = 1500
 
 Implementing XGBoost with these hyperparameters resulted in an impressive R-squared score of around 0.85 on the test set!
 To better understand which features were most important for the XGBoost model's predictions, we plotted the feature importance scores. This can provide valuable insights and potentially guide future feature engineering efforts.
