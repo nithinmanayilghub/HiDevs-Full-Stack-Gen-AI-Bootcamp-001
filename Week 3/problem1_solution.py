@@ -1,72 +1,109 @@
 import pickle
+from datetime import datetime
+import re
 
-# Define a class to represent personal information
 class PersonalInfo:
-    # Constructor to initialize the object
-    def __init__(self,name,dob,is_secret=False):
+    def __init__(self, name, dob, is_secret=False):
         self.name = name
         self.dob = dob
         self.is_secret = is_secret
     
-    # String representation of the object
     def __str__(self):
-         # If the information is marked as secret, return the name with 'secret' label
         if self.is_secret:
             return f"{self.name}: secret"
-         # Otherwise, return the name and date of birth
         else:
-            return f"{self.name}:{self.dob}"
+            return f"{self.name}: {self.dob}"
 
-personal_info_dict = {}
+class PersonalInfoManager:
 
-# Load personal information from existing file
-try:
-    with open("problem1_data_file.pickle","rb") as file:
-        personal_info_dict = pickle.load(file)
-except (FileNotFoundError,EOFError):
-    pass
+    def __init__(self,filename):
+        self.filename = filename
+        self.personal_info_dict = self.load_info()
 
-# Function to save personal information to a file
-def save_info():
-    with open("problem1_data_file.pickle","wb") as file:
-        pickle.dump(personal_info_dict,file)
+    def load_info(self):
+        try:
+            with open(self.filename,"rb") as file:
+                return pickle.load(file)
+        except FileNotFoundError:
+            return {}
 
-# Function to Add Personal Information
-def add_personal_info():
-    global personal_info_dict  # Declare that you want to use the global variable
-    name = input("Please Enter the name of the person: ").title()
-    dob = input("Please Enter the  Date of Birth (YYYY-MM-DD): ")
-    is_secret = input("Is the date of birth, a secret?[Y/n]: ").lower() == 'y'
-    person = PersonalInfo(name,dob,is_secret)
-    personal_info_dict[name] = person
-    save_info()
+    def save_info(self):
+        with open(self.filename, "wb") as file:
+            pickle.dump(self.personal_info_dict, file)
 
-# Example Implementation
-attempts = 0
-while attempts < 3:
-    try:
-        choice = input("'a': Add Personal Details,\n'g': Get Personal Details,\n'q': Quit\n")
-        if choice == 'a':
-            add_personal_info()
-        elif choice == 'g':
-            for person in personal_info_dict.values():
+    @staticmethod
+    def validate_name(name):
+        pattern = '^(?:[A-Za-z])+\\s+(?:[A-Za-z])+$'
+        if re.match(pattern,name):
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def validate_date(date):
+        try:
+            datetime.strptime(date, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
+
+    @staticmethod
+    def input_with_validation(prompt, validation_func, error_msg):
+        for _ in range(3):
+            value = input(prompt).strip()
+            if validation_func(value):
+                return value
+            print(error_msg)
+        return None
+
+    def get_personal_info(self):
+        if self.personal_info_dict:
+            for person in self.personal_info_dict.values():
                 print(person)
-        elif choice == 'q':
-            break
         else:
-            print("Invalid Input.Please try again")
-            attempts += 1
-    except ValueError:
-        print("Invalid Input.Please try again")
-        attempts += 1
-else:
-    print("Maximum Limits reached.Exiting Function")
+            print("No Personal Informationa available.")
+
+    def add_personal_info(self):
+        name = self.input_with_validation(
+            "Please enter the name of the person: ",
+            self.validate_name,
+            "Invalid Name. Please make sure that the name entered is valid."
+        )
+        if name is None:
+            print("Maximum attempts reached.Returning to main menu.")
+            return
+    
+        dob = self.input_with_validation(
+            "Please Enter the Date Of Birth in (YYYY-MM-DD):",
+            self.validate_date,
+            "Invalid date format.Please Enter the date of Birth in (YYYY-MM-DD) format."
+        )
+        if dob is None:
+            print("Maximum attempts reached.Returning to main menu")
+            return
+        
+        is_secret = input("Is the date of birth a secret?[y/n]: ").strip().lower() == 'y'
+
+        self.personal_info_dict[name.title()] = PersonalInfo(name.title(),dob,is_secret)
+        self.save_info()
+        print(f"Information for {name.title()} added successfully.")
 
 
+    def main(self):
+        actions = {
+            'a':self.add_personal_info,
+            'g':self.get_personal_info,
+            'q':lambda:exit("Exiting program.")
+        }
 
+        while True:
+            choice = input("'a':Add Details, \n 'g': Get Personal Details, \n 'q': Quit\n").strip().lower()
+            action = actions.get(choice)
+            if action:
+                action()
+            else:
+                print("Invalid input. Please try again.")
 
-
-
-
-
-
+if __name__ == "__main__":
+    manager = PersonalInfoManager("problem_1_data_file.pickle")
+    manager.main()
