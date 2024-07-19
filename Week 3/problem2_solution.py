@@ -7,7 +7,7 @@ import re
 class AddressBook:
     def __init__(self):
         self.address_book = defaultdict(list)
-        self.email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        self.email_pattern = r'\b[A-Za-z0-9]+@[a-z]+\.[A-Z|a-z]{2,}\b'
         self.mobile_pattern = r'^\d{10}$'
 
     # Function to validate the input 
